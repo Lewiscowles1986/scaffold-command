@@ -158,7 +158,7 @@ jobs:
           echo "WP_CLI_TEST_DBROOTUSER=root" >> $GITHUB_ENV
           echo "WP_CLI_TEST_DBROOTPASS=root" >> $GITHUB_ENV
           echo "WP_CLI_TEST_DBUSER=wp_cli_test" >> $GITHUB_ENV
-          echo "WP_CLI_TEST_DBPASS=root" >> $GITHUB_ENV
+          echo "WP_CLI_TEST_DBPASS=password1" >> $GITHUB_ENV
           echo "WP_CLI_TEST_DBHOST=127.0.0.1:${{ job.services.mysql.ports['3306'] }}" >> $GITHUB_ENV
 
       - name: Prepare test database
@@ -169,5 +169,5 @@ jobs:
         if: steps.check_files.outputs.files_exists == 'true'
         env:
           WP_VERSION: '${{ matrix.wp }}'
-          WP_CLI_TEST_DEBUG_BEHAT_ENV: 'on'
+          DISABLED_WP_CLI_TEST_DEBUG_BEHAT_ENV: 'on'
         run: ${{ matrix.test }}
