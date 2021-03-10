@@ -146,10 +146,6 @@ jobs:
         if: steps.check_files.outputs.files_exists == 'true'
         run: COMPOSER_ROOT_VERSION=dev-master composer install --prefer-dist --no-progress --no-suggest
 
-      - name: Start MySQL server
-        if: steps.check_files.outputs.files_exists == 'true'
-        run: sudo systemctl start mysql
-
       - name: Configure DB environment
         if: steps.check_files.outputs.files_exists == 'true'
         run: |
