@@ -19,7 +19,7 @@
     ],
     "require": {
         "wp-cli/wp-cli": "^2.5",
-        "wp-cli/wp-cli-tests": "patch-3"
+        "wp-cli/wp-cli-tests": "dev-patch-3"
     },
     "require-dev": {
         "wp-cli/extension-command": "^1.2 || ^2"
