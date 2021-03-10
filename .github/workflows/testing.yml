@@ -111,7 +111,7 @@ jobs:
     steps:
 
       - name: Test connect to MySQL
-        run: mysql -uroot -proot -h127.0.0.1 -e "SHOW DATABASES"
+        run: mysql -uroot -proot -h127.0.0.1 -P${{ job.services.mysql.ports[3306] }} -e "SHOW DATABASES"
 
       - name: Check out source code
         uses: actions/checkout@v2
