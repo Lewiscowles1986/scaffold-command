@@ -29,7 +29,7 @@ Feature: Scaffold install-wp-tests.sh tests
     And save STDOUT as {PLUGIN_DIR}
     And I run `wp scaffold plugin hello-world`
     # Hardcoded for GHA, needs to be made more flexible for local setups.
-    And I run `mysql -u{DB_USER} -p{DB_PASSWORD} -h$MYSQL_HOST -P$MYSQL_TCP_PORT --protocol=tcp -e "DROP DATABASE IF EXISTS wp_cli_test_scaffold"`
+    And I run `MYSQL_PWD={DB_ROOT_PASSWORD} mysql -u{DB_ROOT_USER} -h{MYSQL_HOST} -P{MYSQL_PORT} --protocol=tcp -e "DROP DATABASE IF EXISTS wp_cli_test_scaffold"`
     And I try `rm -fr /tmp/behat-wordpress-tests-lib`
     And I try `rm -fr /tmp/behat-wordpress`
 
@@ -76,14 +76,14 @@ Feature: Scaffold install-wp-tests.sh tests
       """
 
     # Hardcoded for GHA, needs to be made more flexible for local setups.
-    When I run `mysql -u{DB_USER} -p{DB_PASSWORD} -h$MYSQL_HOST -P$MYSQL_TCP_PORT --protocol=tcp -e "SHOW DATABASES"`
+    When I run `MYSQL_PWD={DB_PASSWORD} mysql -u{DB_USER} -h{MYSQL_HOST} -P{MYSQL_PORT} --protocol=tcp -e "SHOW DATABASES"`
     Then the return code should be 0
     And STDOUT should contain:
       """
       wp_cli_test_scaffold
       """
 
-    When I run `WP_TESTS_DIR=/tmp/behat-wordpress-tests-lib phpunit -c {PLUGIN_DIR}/hello-world/phpunit.xml.dist`
+    When I run `WP_TESTS_DIR=/tmp/behat-wordpress-tests-lib /usr/local/bin/phpunit -c {PLUGIN_DIR}/hello-world/phpunit.xml.dist`
     Then the return code should be 0
 
     When I try `WP_TESTS_DIR=/tmp/behat-wordpress-tests-lib WP_CORE_DIR=/tmp/behat-wordpress /usr/bin/env bash {PLUGIN_DIR}/hello-world/bin/install-wp-tests.sh wp_cli_test_scaffold {DB_USER} {DB_PASSWORD} {DB_HOST} latest < affirmative-response`
@@ -115,7 +115,7 @@ Feature: Scaffold install-wp-tests.sh tests
     And save STDOUT as {PLUGIN_DIR}
     And I run `wp scaffold plugin hello-world`
     # Hardcoded for GHA, needs to be made more flexible for local setups.
-    And I run `mysql -u{DB_USER} -p{DB_PASSWORD} -h$MYSQL_HOST -P$MYSQL_TCP_PORT --protocol=tcp -e "DROP DATABASE IF EXISTS wp_cli_test_scaffold"`
+    And I run `MYSQL_PWD={DB_PASSWORD} mysql -u{DB_USER} -h{MYSQL_HOST} -P{MYSQL_PORT} --protocol=tcp -e "DROP DATABASE IF EXISTS wp_cli_test_scaffold"`
     And I try `rm -fr /tmp/behat-wordpress-tests-lib`
     And I try `rm -fr /tmp/behat-wordpress`
 
@@ -175,14 +175,14 @@ Feature: Scaffold install-wp-tests.sh tests
       """
 
     # Hardcoded for GHA, needs to be made more flexible for local setups.
-    When I run `mysql -u{DB_USER} -p{DB_PASSWORD} -h$MYSQL_HOST -P$MYSQL_TCP_PORT --protocol=tcp -e "SHOW DATABASES"`
+    When I run `MYSQL_PWD={DB_PASSWORD} mysql -u{DB_USER} -h{MYSQL_HOST} -P{MYSQL_PORT} --protocol=tcp -e "SHOW DATABASES"`
     Then the return code should be 0
     And STDOUT should contain:
       """
       wp_cli_test_scaffold
       """
 
-    When I run `WP_TESTS_DIR=/tmp/behat-wordpress-tests-lib phpunit -c {PLUGIN_DIR}/hello-world/phpunit.xml.dist`
+    When I run `WP_TESTS_DIR=/tmp/behat-wordpress-tests-lib /usr/local/bin/phpunit -c {PLUGIN_DIR}/hello-world/phpunit.xml.dist`
     Then the return code should be 0
 
   Scenario: Install WordPress 3.7 and phpunit will not run
@@ -191,7 +191,7 @@ Feature: Scaffold install-wp-tests.sh tests
     And save STDOUT as {PLUGIN_DIR}
     And I run `wp scaffold plugin hello-world`
     # Hardcoded for GHA, needs to be made more flexible for local setups.
-    And I run `mysql -u{DB_USER} -p{DB_PASSWORD} -h$MYSQL_HOST -P$MYSQL_TCP_PORT --protocol=tcp -e "DROP DATABASE IF EXISTS wp_cli_test_scaffold"`
+    And I run `MYSQL_PWD={DB_PASSWORD} mysql -u{DB_USER} -h{MYSQL_HOST} -P{MYSQL_PORT} --protocol=tcp -e "DROP DATABASE IF EXISTS wp_cli_test_scaffold"`
     And I try `rm -fr /tmp/behat-wordpress-tests-lib`
     And I try `rm -fr /tmp/behat-wordpress`
 
@@ -241,7 +241,7 @@ Feature: Scaffold install-wp-tests.sh tests
       """
 
     # Hardcoded for GHA, needs to be made more flexible for local setups.
-    When I run `mysql -u{DB_USER} -p{DB_PASSWORD} -h$MYSQL_HOST -P$MYSQL_TCP_PORT --protocol=tcp -e "SHOW DATABASES"`
+    When I run `MYSQL_PWD={DB_PASSWORD} mysql -u{DB_USER} -h{MYSQL_HOST} -P{MYSQL_PORT} --protocol=tcp -e "SHOW DATABASES"`
     Then the return code should be 0
     And STDOUT should contain:
       """
