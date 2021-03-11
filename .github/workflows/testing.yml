@@ -129,7 +129,7 @@ jobs:
           php-version: '${{ matrix.php }}'
           extensions: mysql, zip
           coverage: none
-          tools: composer, phpunit:7.5.9
+          tools: composer, phpunit:6.5.5
 
       - name: Get Composer cache Directory
         if: steps.check_files.outputs.files_exists == 'true'
