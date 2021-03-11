@@ -83,13 +83,6 @@ Feature: Scaffold install-wp-tests.sh tests
       wp_cli_test_scaffold
       """
 
-    When I run `pwd && ls -lha`
-    Then the return code should be 0
-    And STDOUT should contain:
-      """
-      hgkfjhddgdfjdj
-      """
-
     When I run `WP_TESTS_DIR=/tmp/behat-wordpress-tests-lib phpunit -c {PLUGIN_DIR}/hello-world/phpunit.xml.dist`
     Then the return code should be 0
 
