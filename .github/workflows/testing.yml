@@ -129,7 +129,7 @@ jobs:
           php-version: '${{ matrix.php }}'
           extensions: mysql, zip
           coverage: none
-          tools: composer, phpunit:5.7.27
+          tools: composer, phpunit:6.5.14
 
       - name: phpunit version (global)
         run: phpunit -v || echo "PHPUnit not found"
