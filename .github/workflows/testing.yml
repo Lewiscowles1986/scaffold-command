@@ -134,6 +134,9 @@ jobs:
       - name: phpunit version (global)
         run: phpunit -v || echo "PHPUnit not found"
 
+      - name: phpunit location (global)
+        run: which phpunit
+
       - name: Get Composer cache Directory
         if: steps.check_files.outputs.files_exists == 'true'
         id: composer-cache
@@ -155,6 +158,9 @@ jobs:
 
       - name: phpunit version (composer)
         run: composer exec phpunit -v || echo "PHPUnit not found"
+
+      - name: list directory contents (recursive)
+        run: ls -lhaR
 
       - name: Configure DB environment
         if: steps.check_files.outputs.files_exists == 'true'
